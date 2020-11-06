@@ -1,0 +1,85 @@
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link media="all" rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+    <div class="limiter">
+        <h1>Описание по установке пекеджа на телевизор Samsung Tizen</h1>
+        <p>Имеется:</p>
+        <ul>
+            <li>телевизор Samsung Tizen 4.0</li>
+            <li>Windows 10 (думаю, что на Mac всё то же самое верно)</li>
+            <li>пекедж package.wgt</li>
+        </ul>
+        <p>Для установки пекеджа на телевизор необходимо проделать следующие шаги:</p>
+        <ol>
+            <li><a href="#step0">Скачать и установить Tizen Studio with IDE</a></li>
+            <li><a href="#step1">Настроить пекеджи для работы с приложением на СмартТВ</a></li>
+            <li><a href="#step2">Создать сертификат</a></li>
+            <li><a href="#step3">Подключиться к телевизору через Tizen Studio</a></li>
+            <li><a href="#step4">Импортировать приложение в Tizen Studio</a></li>
+            <li><a href="#step5">Запуск приложения на телевизоре</a></li>
+        </ol>
+        <h2 id="step0">Установка Tizen Studio</h2>
+        <p>Необходимо <a href="https://developer.tizen.org/ko/development/tizen-studio/download" target="_blank" title="Tizen Studio with IDE installer">скачать и установить Tizen Studio with IDE installer</a>.</p>
+        <p>Я установил Tizen Studio 4.0 with IDE installer. Со временем Samsung выпускает новые версии, это в нашем случае не важно, могут быть отличия в интерфейсе</p>
+        <h2 id="step1">Настройка Package Manager</h2>
+        <p>После успешной установки Tizen Studio необходимо открыть Package Manager (tools -> Package Manager)</p>
+        <img src="i/package-manager-0.jpg" alt="Package Manager" />
+        <p>и необходимо кликнуть по "Configuration" (на иконку с шестерёнкой)</p>
+        <img src="i/package-manager-configuration.png" alt="Package Manager Configuration" />
+        <p>Необходимо отключить автообновления</p>
+        <img src="i/disable-auto-update.jpg" alt="disable-auto-update" />
+        <p>Далее, клик по "Extensions SDK", найти в списке "Samsung Tizen TV SDK" и отключить</p>
+        <img src="i/disable-samsung-tizen-tv-sdk.jpg" alt="disable-samsung-tizen-tv-sdk" />
+        <p>Следующим шагом необходимо добавить extension нажав на иконку "плюс"</p>
+        <img src="i/plus.png" alt="plus" />
+        <p>Заполняем соответствующие поля "name": "TV Extensions-3.0", "repository": "<a href="http://sdf.samsungcloudcdn.com/Public/smart_tv_sdk/releases/samsung_tizen_studio_tv_sdk/stv_ext_public/3.0">http://sdf.samsungcloudcdn.com/Public/smart_tv_sdk/releases/samsung_tizen_studio_tv_sdk/stv_ext_public/3.0</a>" без кавычек</p>
+        <img src="i/add-extension.png" alt="add-extension" />
+        <p>Нажимаем "Ok" и применяем новую конфигурацию</p>
+        <img src="i/ok.png" alt="ok" style="display: block" />
+        <img src="i/apply-new-configuration.jpg" alt="apply-new-configuration" style="display: block" />
+        <p>После обновления конфигурации кликаем по вкладке "Extension SDK" что бы установить все зависимости, которые включены в "TV Extensions-3.0"</p>
+        <img src="i/TV-Extensions-3.0.jpg" alt="TV-Extensions-3.0" />
+        <p>Потребуется время, что бы все зависимости установились. После успешной установки всех зависимостей можно закрыть Package Manager и открыть Tizen Studio</p>
+        <h2 id="step2">Настройка сертификата</h2>
+        <p>Для успешной установки пекеджа необходимо создать сертификат, это чистая условность, поля для заполнения в примере произвольные</p>
+        <p>Открываем Certificate Manager (в Tizen Studio tools -> Certificate Manager) и кликаем по иконке "плюс"</p>
+        <img src="i/certificate-manager-0.jpg" alt="certificate-manager-0" />
+        <p>Последующие шаги просто иллюстрирую изображениями:</p>
+        <img src="i/certificate-manager-1.jpg" alt="certificate-manager-1" />
+        <img src="i/certificate-manager-2.jpg" alt="certificate-manager-2" />
+        <img src="i/certificate-manager-3.jpg" alt="certificate-manager-3" />
+        <img src="i/certificate-manager-4.jpg" alt="certificate-manager-4" />
+        <p>После того, как будет создан сертификат мы вернёмся к окну Certificate Manager, где уже автоматически будет выбран созданный сертификат</p>
+        <img src="i/certificate-manager-5.jpg" alt="certificate-manager-5" />
+        <p>Этап создания сертификата завершён, закрываем Certificate Manager</p>
+        <h2 id="step3">Подключение к телевизору</h2>
+        <p>Для создания подключения с телевизором необходимо знать IP-адреса телевизора и компьютера, на котором установлена Tizen Studio</p>
+        <p>В телевизоре необходимо перейти в раздел Apps и набрать циферный код "12345", после чего появится окно ввода IP-адреса компьютера, с которым необходимо создать подключение</p>
+        <img src="i/enter-ip.jpg" alt="enter-ip" />
+        <p>Если это первое подключение в режиме Develop Mode, то необходима перезагрузка телевизора</p>
+        <p>С настройкой подключения на стороне телевизора закончено, переходим к Tizen Studio.</p>
+        <p>Для подключения телевизора необходимо в Tizen Studio перейти к tools -> Device manager и кликнуть по иконке Remote Device Manager</p>
+        <img src="i/remote-device-manager.jpg" alt="remote-device-manager" />
+        <p>В появившимся окне кликаем по иконке "плюс" и вводим имя и IP-адрес телевизора:</p>
+        <img src="i/tizen-connection-0.jpg" alt="tizen-connection-0" />
+        <p>Телевизор добавлен в список, осталось передвинуть ползунок "Connection" в положение "ON"</p>
+        <img src="i/tizen-connection-1.jpg" alt="tizen-connection-1" />
+        <p>Подключение с телевизором создано. Окно Device Manager можно закрыть</p>
+        <h2 id="step4">Импорт приложения в Tizen Studio</h2>
+        <p>Импортируем приложение в Tizen Studio: File -> Import как "Tizen Project"</p>
+        <img src="i/package-import-0.jpg" alt="package-import-0" />
+        <p>На следующем шаге выбираем тип как "Archive file" и через "Browse" указываем путь до wgt-пекеджа</p>
+        <img src="i/package-import-1.jpg" alt="package-import-1" />
+        <p>На следующем шаге устанавливаем "Profile" как "tv-samsung", "Version" в положение "3.0" и выставляем галочки:</p>
+        <img src="i/package-import-2.jpg" alt="package-import-2" />
+        <p>После нажатия кнопки "Finish" возвращаемся назад к Tizen Studio, наблюдаем в левом столбце, во вкладке "Project Explorer" новый проект с импортированным wgt-пекеджем:</p>
+        <img src="i/package-import-3.jpg" alt="package-import-3" />
+        <h2 id="step5">Запуск приложения на телевизоре</h2>
+        <p>Что бы запустить приложение достаточно кликнуть правой кнопкой мыши по импортированному wgt-пекеджу, Run As -> Tizen Web Application</p>
+        <p>После чего приложение установится на телевизор и произойдёт запуск установленного приложения на телевизоре</p>
+    </div>
+</body>
+</html>
